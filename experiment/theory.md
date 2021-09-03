@@ -19,4 +19,4 @@
 
 This cipher is unbreakable in a very strong sense. The intuition is that any message can be transformed into any cipher (of the same length) by a pad, and all transformations are equally likely. Given a two letter message, there is a pad which adds to the message to give OK, and another pad which adds to the message to give NO. Since either of these pads are equally likely, the message is equally likely to be OK or NO.
 
-For more details on the topic, [click here](http://cse29-iiith.vlabs.ac.in/exp3/media/lec1.pdf)
+For more details on the topic, [click here](docs/lec1.pdf)
