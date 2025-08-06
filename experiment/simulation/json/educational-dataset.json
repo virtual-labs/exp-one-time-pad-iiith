@@ -1,0 +1,121 @@
+{
+  "scenarios": [
+    {
+      "id": 1,
+      "title": "Perfect One-Time Pad (Secure)",
+      "description": "True one-time pad with random key same length as message",
+      "plaintext": "11010011",
+      "key": "01101100",
+      "expectedCiphertext": "10111111",
+      "isSecure": true,
+      "explanation": "✅ Secure: Random key, same length as message, used only once. This achieves perfect secrecy.",
+      "learningPoint": "One-time pad with proper key achieves perfect secrecy",
+      "correctInputs": {
+        "userPrediction": "10111111",
+        "userSecurityAnswer": "secure"
+      }
+    },
+    {
+      "id": 2,
+      "title": "Key Reuse Vulnerability",
+      "description": "Same key used for multiple messages (forbidden in OTP)",
+      "plaintext": "10101010",
+      "key": "11001100",
+      "expectedCiphertext": "01100110",
+      "scenarios": [
+        {
+          "plaintext": "10101010",
+          "key": "11001100",
+          "ciphertext": "01100110"
+        },
+        {
+          "plaintext": "01010101",
+          "key": "11001100",
+          "ciphertext": "10011001"
+        }
+      ],
+      "isSecure": false,
+      "explanation": "❌ Insecure: Key reuse allows attackers to find patterns. XOR of two ciphertexts reveals XOR of plaintexts.",
+      "learningPoint": "Never reuse a one-time pad key",
+      "attackDemo": "C1 ⊕ C2 = (P1 ⊕ K) ⊕ (P2 ⊕ K) = P1 ⊕ P2",
+      "correctInputs": {
+        "userPrediction": "01100110",
+        "userSecurityAnswer": "insecure"
+      }
+    },
+    {
+      "id": 3,
+      "title": "Short Key Expansion",
+      "description": "Key shorter than message, expanded by repetition",
+      "plaintext": "11100010",
+      "shortKey": "101",
+      "key": "10110110",
+      "expectedCiphertext": "01010100",
+      "isSecure": false,
+      "explanation": "❌ Insecure: Short keys create patterns. Expansion makes the cipher periodic and breakable.",
+      "learningPoint": "Key must be at least as long as the message",
+      "correctInputs": {
+        "userPrediction": "01010100",
+        "userSecurityAnswer": "insecure"
+      }
+    },
+    {
+      "id": 4,
+      "title": "Predictable Key Pattern",
+      "description": "Key with obvious pattern (not random)",
+      "plaintext": "10110100",
+      "key": "10101010",
+      "expectedCiphertext": "00011110",
+      "isSecure": false,
+      "explanation": "❌ Insecure: Predictable keys don't provide randomness needed for perfect secrecy.",
+      "learningPoint": "Keys must be truly random, not follow patterns",
+      "correctInputs": {
+        "userPrediction": "00011110",
+        "userSecurityAnswer": "insecure"
+      }
+    },
+    {
+      "id": 5,
+      "title": "All Zeros Attack",
+      "description": "What happens when plaintext is all zeros?",
+      "plaintext": "00000000",
+      "key": "11010110",
+      "expectedCiphertext": "11010110",
+      "isSecure": true,
+      "explanation": "⚠️ Reveals key! When plaintext is all zeros, ciphertext equals the key. While the cipher itself is secure, this demonstrates information leakage.",
+      "learningPoint": "Even secure systems can leak information in special cases",
+      "correctInputs": {
+        "userPrediction": "11010110",
+        "userSecurityAnswer": "secure"
+      }
+    },
+    {
+      "id": 6,
+      "title": "Perfect Secrecy Violation",
+      "description": "Different keys producing same ciphertext for different plaintexts",
+      "plaintext": "01010101",
+      "key": "10110010",
+      "expectedCiphertext": "11100111",
+      "messages": [
+        {
+          "plaintext": "01010101",
+          "key": "10110010",
+          "ciphertext": "11100111"
+        },
+        {
+          "plaintext": "10101010",
+          "key": "01001101",
+          "ciphertext": "11100111"
+        }
+      ],
+      "question": "Do these two different plaintexts produce the same ciphertext?",
+      "isSecure": false,
+      "explanation": "❌ This violates perfect secrecy principle: different messages should never produce identical ciphertexts with different keys.",
+      "learningPoint": "Perfect secrecy requires each ciphertext to be equally likely for any plaintext",
+      "correctInputs": {
+        "userPrediction": "11100111",
+        "userSecurityAnswer": "insecure"
+      }
+    }
+  ]
+}
