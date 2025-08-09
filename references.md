@@ -1,0 +1,5 @@
+- [One-Time Pad - Wikipedia](https://en.wikipedia.org/wiki/One-time_pad)
+- [Vernam Cipher - Wikipedia](https://en.wikipedia.org/wiki/Vernam_cipher)
+- [Perfect Secrecy - Wikipedia](https://en.wikipedia.org/wiki/Information-theoretic_security)
+- [Shannon's Communication Theory](https://en.wikipedia.org/wiki/A_Mathematical_Theory_of_Communication)
+- Introduction to Modern Cryptography by Jonathan Katz and Yehuda Lindell (3rd Edition)

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vernam Cipher and Perfect Secrecy Simulation</title>
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+  <body>
+    <div class="main-container">
+      <!-- Scenario Selection -->
+      <div class="section-card">
+        <h4>📋 Educational Scenarios</h4>
+
+        <table class="input-table">
+          <tr>
+            <td><strong>Select Scenario:</strong></td>
+            <td>
+              <select id="scenario-selector">
+                <option value="">Choose a scenario to begin...</option>
+                <option value="1">
+                  Scenario 1: Perfect Secrecy (Proper Usage)
+                </option>
+                <option value="2">Scenario 2: Key Reuse Attack</option>
+                <option value="3">Scenario 3: Shorter Key Vulnerability</option>
+                <option value="4">
+                  Scenario 4: Pattern Recognition Attack
+                </option>
+                <option value="5">Scenario 5: Known Plaintext Attack</option>
+                <option value="6">
+                  Scenario 6: Statistical Analysis Attack
+                </option>
+              </select>
+            </td>
+          </tr>
+        </table>
+
+        <!-- Current Scenario Display -->
+        <div id="current-scenario" style="display: none">
+          <!-- Interactive Demo -->
+          <div class="info-panel">
+            <h6 id="scenario-title">Scenario Details</h6>
+            <div id="scenario-description"></div>
+
+            <p style="margin-top: 15px">
+              <strong
+                >Try the encryption yourself with the scenario values:</strong
+              >
+            </p>
+
+            <table class="input-table">
+              <tr>
+                <td><strong>📝 Plaintext:</strong></td>
+                <td>
+                  <input
+                    id="demo-plaintext"
+                    type="text"
+                    placeholder="Binary input"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td><strong>🗝️ Key:</strong></td>
+                <td>
+                  <input id="demo-key" type="text" placeholder="Binary key" />
+                </td>
+              </tr>
+              <tr>
+                <td><strong>📄 Expected Result:</strong></td>
+                <td>
+                  <span
+                    id="scenario-ciphertext"
+                    style="
+                      font-family: monospace;
+                      font-weight: bold;
+                      color: #2c3e50;
+                    "
+                  ></span>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>🛡️ Security Status:</strong></td>
+                <td>
+                  <span id="scenario-security" style="font-weight: bold"></span>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>� Your Result:</strong></td>
+                <td>
+                  <input
+                    id="demo-ciphertext"
+                    type="text"
+                    readonly
+                    style="background: #f8f9fa"
+                  />
+                </td>
+              </tr>
+            </table>
+
+            <div class="center-buttons">
+              <button onclick="encryptDemo()" class="button-primary">
+                🔐 Encrypt
+              </button>
+            </div>
+          </div>
+
+          <!-- User Prediction Area -->
+          <div class="warning-panel">
+            <h6>🤔 Test Your Understanding</h6>
+
+            <table class="input-table">
+              <tr>
+                <td><strong>Predict Ciphertext:</strong></td>
+                <td>
+                  <input
+                    id="user-prediction"
+                    type="text"
+                    placeholder="Enter your prediction"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Security Assessment:</strong></td>
+                <td>
+                  <select id="user-security-answer">
+                    <option value="">Select security level...</option>
+                    <option value="secure">Secure (Perfect Secrecy)</option>
+                    <option value="insecure">Insecure (Vulnerable)</option>
+                  </select>
+                </td>
+              </tr>
+            </table>
+
+            <div class="center-buttons">
+              <button
+                onclick="checkUserPrediction(document.getElementById('scenario-selector').value)"
+                class="button-success"
+              >
+                ✅ Check My Answer
+              </button>
+            </div>
+          </div>
+
+          <!-- Feedback Area -->
+          <div id="feedback-area" class="success-panel" style="display: none">
+            <h6>📖 Learning Feedback</h6>
+            <div id="feedback-content"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vernam Cipher Simulator -->
+      <div class="section-card">
+        <h4>🧮 Vernam Cipher Simulator</h4>
+
+        <table class="input-table">
+          <tr>
+            <td><strong>📝 Plaintext:</strong></td>
+            <td>
+              <textarea
+                id="p"
+                name="p"
+                rows="2"
+                placeholder="Enter binary plaintext"
+              >
+10010011000110</textarea
+              >
+            </td>
+          </tr>
+          <tr>
+            <td><strong>🗝️ Key:</strong></td>
+            <td>
+              <input
+                id="key"
+                name="key"
+                type="text"
+                value="10101100110001"
+                placeholder="Enter binary key"
+              />
+              <button
+                onclick="Vernam_RandKey()"
+                class="button-secondary"
+                style="margin-left: 10px"
+              >
+                🎲 Generate Random Key
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>📄 Ciphertext:</strong></td>
+            <td>
+              <textarea
+                id="c"
+                name="c"
+                rows="2"
+                readonly
+                style="background: #f8f9fa"
+                placeholder="Encrypted result will appear here..."
+              ></textarea>
+            </td>
+          </tr>
+        </table>
+
+        <div class="center-buttons">
+          <button onclick="Vernam_Encrypt()" class="button-primary">
+            🔐 Encrypt ↓
+          </button>
+          <button
+            onclick="Vernam_Decrypt()"
+            class="button-primary"
+            style="margin-left: 10px"
+          >
+            🔓 Decrypt ↑
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Initialize the interface
+      document.addEventListener("DOMContentLoaded", function () {
+        document
+          .getElementById("scenario-selector")
+          .addEventListener("change", function () {
+            if (this.value) {
+              document.getElementById("current-scenario").style.display =
+                "block";
+              loadScenario(parseInt(this.value));
+            } else {
+              document.getElementById("current-scenario").style.display =
+                "none";
+            }
+          });
+      });
+    </script>
+
+    <!-- JavaScript Files -->
+    <script src="js/mobile-detection.js"></script>
+    <script src="js/educational_dataset.js"></script>
+    <script src="js/vernam.js"></script>
+  <script src="../assets/js/iframeResize.js"></script>
+        
+        </body>
+</html>
