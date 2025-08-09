@@ -36,6 +36,19 @@ function loadScenario(scenarioId) {
       scenario.key || scenario.expandedKey;
   }
 
+  // Populate Expected Result and Security Status
+  if (scenario.expectedCiphertext) {
+    document.getElementById("scenario-ciphertext").textContent =
+      scenario.expectedCiphertext;
+  }
+
+  if (scenario.isSecure !== undefined) {
+    const securityStatus = scenario.isSecure
+      ? "🟢 Secure (Perfect Secrecy)"
+      : "🔴 Insecure (Vulnerable)";
+    document.getElementById("scenario-security").textContent = securityStatus;
+  }
+
   // Clear user input
   document.getElementById("user-prediction").value = "";
   document.getElementById("user-security-answer").value = "";

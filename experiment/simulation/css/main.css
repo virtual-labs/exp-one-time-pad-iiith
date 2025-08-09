@@ -230,3 +230,110 @@ p {
     font-size: 20px;
   }
 }
+
+/* Additional styles for enhanced interface */
+.main-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.section-card {
+  background: #e8f4fd;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 15px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid #3498db;
+}
+
+.info-panel {
+  background: #e8f5e8;
+  padding: 15px;
+  border-radius: 8px;
+  border-left: 4px solid #28a745;
+  margin: 15px 0;
+}
+
+.warning-panel {
+  background: #fff3cd;
+  padding: 15px;
+  border-radius: 8px;
+  border-left: 4px solid #ffc107;
+  margin: 15px 0;
+}
+
+.success-panel {
+  background: #d4edda;
+  padding: 15px;
+  border-radius: 8px;
+  border-left: 4px solid #28a745;
+  margin: 15px 0;
+}
+
+.input-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 10px 0;
+}
+
+.input-table td {
+  padding: 8px;
+  vertical-align: top;
+}
+
+.input-table td:first-child {
+  width: 120px;
+  font-weight: bold;
+}
+
+.input-table input,
+.input-table textarea,
+.input-table select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.button-primary {
+  background: #3498db;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.button-success {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.button-secondary {
+  background: #6c757d;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.center-buttons {
+  text-align: center;
+  margin: 15px 0;
+}
+
+h6 {
+  color: #2c3e50;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
