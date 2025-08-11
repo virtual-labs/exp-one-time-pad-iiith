@@ -1,4 +1,5 @@
-- [Wikipedia](https://en.wikipedia.org/wiki/One-time_pad)
-- [Notes on One Time Pad](docs/lec1.pdf)
-- Introduction to Modern Cryptography by Jonathan Katz and Yehuda Lindell.
-
+- [One-Time Pad - Wikipedia](https://en.wikipedia.org/wiki/One-time_pad)
+- [Vernam Cipher - Wikipedia](https://en.wikipedia.org/wiki/Vernam_cipher)
+- [Perfect Secrecy - Wikipedia](https://en.wikipedia.org/wiki/Information-theoretic_security)
+- [Shannon's Communication Theory](https://en.wikipedia.org/wiki/A_Mathematical_Theory_of_Communication)
+- Introduction to Modern Cryptography by Jonathan Katz and Yehuda Lindell (3rd Edition)

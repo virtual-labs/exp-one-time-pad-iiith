@@ -1,100 +1,242 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<!-- Add CSS at the head of HTML file -->
-    <link rel="stylesheet" href="./css/main.css">
-</head>
-<body>
-		<!-- Your code goes here-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vernam Cipher and Perfect Secrecy Simulation</title>
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+  <body>
+    <div class="main-container">
+      <!-- Scenario Selection -->
+      <div class="section-card">
+        <h4>📋 Educational Scenarios</h4>
 
+        <table class="input-table">
+          <tr>
+            <td><strong>Select Scenario:</strong></td>
+            <td>
+              <select id="scenario-selector">
+                <option value="">Choose a scenario to begin...</option>
+                <option value="1">
+                  Scenario 1: Perfect Secrecy (Proper Usage)
+                </option>
+                <option value="2">Scenario 2: Key Reuse Attack</option>
+                <option value="3">Scenario 3: Shorter Key Vulnerability</option>
+                <option value="4">
+                  Scenario 4: Pattern Recognition Attack
+                </option>
+                <option value="5">Scenario 5: Known Plaintext Attack</option>
+                <option value="6">
+                  Scenario 6: Statistical Analysis Attack
+                </option>
+              </select>
+            </td>
+          </tr>
+        </table>
 
-<div class="content" id="experiment-article-section-4-content">
-                            <h4>Testing Perfect Secrecy using Shannon's Theorem<br/>
-<br/></h4>
-                            <p>
-                                Is the following encryption scheme perfectly secure? You can observe as many encrypted text and key pairs as you wish. Press "Next Plaintext" method to get more pairs.</p>
-                            <pre> Plaintext:
- <textarea cols="50" id="plainarea" name="plainarea" readonly="readonly" rows="1">11101010</textarea>
-<input name="changePlainText" onclick="next_plain_text()" type="button" value="Next Plaintext"/></pre>
-                            <pre> Key:
-<textarea cols="50" id="keyarea_gen" name="keyarea_gen" readonly="readonly" rows="1">01010100</textarea>
-<input name="changeKey" onclick="next_key()" type="button" value="Next Keytext"/></pre>
-                            <p>
-                                <input name="btnEn" onclick="Encrypt_p()" type="button" value="v Encrypt v"/>
-                            </p>
-                            <pre>Ciphertext: <textarea cols="50" id="cipherarea" name="cipherarea" readonly="readonly" rows="1">01010100</textarea><br/>
-                    <input name="Next_Encryption" onclick="Next_Encryption()" type="button" value="Next Encryption Scheme"/>
-<br/></pre>
-                            <p>For all the possible pairs of plaintext of size 8, and the key given by you, we will provide you with the encrypted texts with the same encryption scheme. You can observe the input and try to break it.
-                                <br/>Put your key here (between size 6 and 12):
-                                <br/>
-                            </p>
-                            <form name="user_key">
-                                <p>
-                                    <input cols="12" id="user_key" maxlength="12" name="limitedtextfield" type="text" value="01010100"/>
-                                </p>
-                            </form>
-                            <br/>
-                            <p>
-                                <input name="generatePairs" onclick="generate_all_pairs()" type="button" value="Encrytion Set"/>
-                            </p>
-                            <br/>
-                            <p>
-                                <br/>Multiple tuples of &lt;Plaintext, Ciphertext&gt;:
-                                <br/>
-                            </p>
-                            <p>
-                                <textarea cols="50" id="textarea2" name="textarea" rows="8"></textarea>
-                            </p>
-                            <br/>
-                            <h4>Is the given encryption scheme secure?</h4>
-                            <hr/>
-                            <p>Yes/No </p>
-                            <form name="yesno">
-                                <p>
-                                    <input id="yesno" maxlength="3" type="text" value=""/>
-                                </p>
-                            </form>
-                            <p>If NO, Give two plaintexts 'm1' and 'm2' for the above key such that Encryption(m1) = Encryption(m2)? </p>
-                            <form name="m">
-                                <p>m1:
-                                    <input id="m1" maxlength="20" type="text" value=""/> </p>
-                                <p>m2:
-                                    <input id="m2" maxlength="20" type="text" value=""/>
-                                </p>
-                            </form>
-                            <p>
-                                <input name="checkAnswer" onclick="checkAnswer()" type="button" value="Check Answer!!"/> </p>
-                            <br/>
-                            <br/>
-                            <textarea cols="50" id="notification" name="notification" rows="1" style="border: 0pt none ;"></textarea>
-                            <p></p>
-                            <h4>Simulator</h4>
-                            <hr/>
-                            <br/>
-                            <p>plaintext
-                                <br/>
-                                <textarea cols="25" id="p" name="p" rows="1">10010011000110</textarea>
-                                <br/>
-                            </p>
-                            <p>key =
-                                <input id="key" maxchars="25" name="key" size="25" type="text" value="1010110 0110001"/>
-                                <input name="genKey" onclick="Vernam_RandKey()" type="button" value="Generate Random Key"/>
-                            </p>
-                            <p>
-                                <input name="btnEn" onclick="Vernam_Encrypt()" type="button" value="v Encrypt v"/>
-                                <input name="btnDe" onclick="Vernam_Decrypt()" type="button" value="^ Decrypt ^"/>
-                            </p>
-                            <p>Ciphertext
-                                <br/>
-                                <textarea cols="50" id="c" name="c" rows="2"></textarea>
-                                <br/>
-                            </p>
-                            <br/>
-                        </div>
+        <!-- Current Scenario Display -->
+        <div id="current-scenario" style="display: none">
+          <!-- Interactive Demo -->
+          <div class="info-panel">
+            <h6 id="scenario-title">Scenario Details</h6>
+            <div id="scenario-description"></div>
 
-		
-	<!-- Add JS at the bottom of HTML file --> 
-        <script src="js/vernam.js"></script>
-</body>
+            <p style="margin-top: 15px">
+              <strong
+                >Try the encryption yourself with the scenario values:</strong
+              >
+            </p>
+
+            <table class="input-table">
+              <tr>
+                <td><strong>📝 Plaintext:</strong></td>
+                <td>
+                  <input
+                    id="demo-plaintext"
+                    type="text"
+                    placeholder="Binary input"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td><strong>🗝️ Key:</strong></td>
+                <td>
+                  <input id="demo-key" type="text" placeholder="Binary key" />
+                </td>
+              </tr>
+              <tr>
+                <td><strong>📄 Expected Result:</strong></td>
+                <td>
+                  <span
+                    id="scenario-ciphertext"
+                    style="
+                      font-family: monospace;
+                      font-weight: bold;
+                      color: #2c3e50;
+                    "
+                  ></span>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>🛡️ Security Status:</strong></td>
+                <td>
+                  <span id="scenario-security" style="font-weight: bold"></span>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>� Your Result:</strong></td>
+                <td>
+                  <input
+                    id="demo-ciphertext"
+                    type="text"
+                    readonly
+                    style="background: #f8f9fa"
+                  />
+                </td>
+              </tr>
+            </table>
+
+            <div class="center-buttons">
+              <button onclick="encryptDemo()" class="button-primary">
+                🔐 Encrypt
+              </button>
+            </div>
+          </div>
+
+          <!-- User Prediction Area -->
+          <div class="warning-panel">
+            <h6>🤔 Test Your Understanding</h6>
+
+            <table class="input-table">
+              <tr>
+                <td><strong>Predict Ciphertext:</strong></td>
+                <td>
+                  <input
+                    id="user-prediction"
+                    type="text"
+                    placeholder="Enter your prediction"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Security Assessment:</strong></td>
+                <td>
+                  <select id="user-security-answer">
+                    <option value="">Select security level...</option>
+                    <option value="secure">Secure (Perfect Secrecy)</option>
+                    <option value="insecure">Insecure (Vulnerable)</option>
+                  </select>
+                </td>
+              </tr>
+            </table>
+
+            <div class="center-buttons">
+              <button
+                onclick="checkUserPrediction(document.getElementById('scenario-selector').value)"
+                class="button-success"
+              >
+                ✅ Check My Answer
+              </button>
+            </div>
+          </div>
+
+          <!-- Feedback Area -->
+          <div id="feedback-area" class="success-panel" style="display: none">
+            <h6>📖 Learning Feedback</h6>
+            <div id="feedback-content"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vernam Cipher Simulator -->
+      <div class="section-card">
+        <h4>🧮 Vernam Cipher Simulator</h4>
+
+        <table class="input-table">
+          <tr>
+            <td><strong>📝 Plaintext:</strong></td>
+            <td>
+              <textarea
+                id="p"
+                name="p"
+                rows="2"
+                placeholder="Enter binary plaintext"
+              >
+10010011000110</textarea
+              >
+            </td>
+          </tr>
+          <tr>
+            <td><strong>🗝️ Key:</strong></td>
+            <td>
+              <input
+                id="key"
+                name="key"
+                type="text"
+                value="10101100110001"
+                placeholder="Enter binary key"
+              />
+              <button
+                onclick="Vernam_RandKey()"
+                class="button-secondary"
+                style="margin-left: 10px"
+              >
+                🎲 Generate Random Key
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>📄 Ciphertext:</strong></td>
+            <td>
+              <textarea
+                id="c"
+                name="c"
+                rows="2"
+                readonly
+                style="background: #f8f9fa"
+                placeholder="Encrypted result will appear here..."
+              ></textarea>
+            </td>
+          </tr>
+        </table>
+
+        <div class="center-buttons">
+          <button onclick="Vernam_Encrypt()" class="button-primary">
+            🔐 Encrypt ↓
+          </button>
+          <button
+            onclick="Vernam_Decrypt()"
+            class="button-primary"
+            style="margin-left: 10px"
+          >
+            🔓 Decrypt ↑
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Initialize the interface
+      document.addEventListener("DOMContentLoaded", function () {
+        document
+          .getElementById("scenario-selector")
+          .addEventListener("change", function () {
+            if (this.value) {
+              document.getElementById("current-scenario").style.display =
+                "block";
+              loadScenario(parseInt(this.value));
+            } else {
+              document.getElementById("current-scenario").style.display =
+                "none";
+            }
+          });
+      });
+    </script>
+
+    <!-- JavaScript Files -->
+    <script src="js/mobile-detection.js"></script>
+    <script src="js/educational_dataset.js"></script>
+    <script src="js/vernam.js"></script>
+  </body>
 </html>

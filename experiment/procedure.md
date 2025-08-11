@@ -1,9 +1,63 @@
-**STEP 1 :** Select a plain text and a key by clicking on the Next buttons next to the respective fields.
+Follow these steps to explore the Vernam Cipher and Perfect Secrecy concepts through interactive scenarios:
 
-**STEP 2 :** If the generated key is biased, make it unbiased in 0 and 1, and use it. You can use the idea given in theory part.
+### **Phase 1: Scenario Selection and Understanding**
 
-**STEP 3 :** On clicking on "Encrypt" button, you will get the ciphertext for the same encryption scheme. You can get the cipher text for as many plaintext and key pairs as you like for the same encryption scheme. You can change the encryption scheme too if you want.
+**STEP 1:** Select a learning scenario from the dropdown menu. Choose from 6 educational scenarios that demonstrate different aspects of cryptographic security and perfect secrecy:
 
-**STEP 4 :** You can take a look at all the possible 2^(length of plaintext + length of key) tuples of plaintext, key and ciphertext in the next block.
+- Scenario 1: Perfect Secrecy (Proper Usage)
+- Scenario 2: Key Reuse Attack
+- Scenario 3: Shorter Key Vulnerability
+- Scenario 4: Pattern Recognition Attack
+- Scenario 5: Known Plaintext Attack
+- Scenario 6: Statistical Analysis Attack
 
-**STEP 5 :** By observing the tuples obtained above, you need to tell if the encryption scheme being used is secure or not. If not, you need to find the message, m and ciphertext, c such that P(M=m|C=c) = P(M=m). In the experiment the size of the message space and that of the key space are equal. Thus from Shannon's theorem, to show that a scheme is not perfect, it is enough if you locate two distinct plaintexts that are encrypted to obtain the same ciphertext for the same key
+**STEP 2:** Read the scenario description carefully to understand:
+
+- The cryptographic context and setup
+- The specific plaintext and key being used
+- The vulnerability or security feature being demonstrated
+- Expected learning outcomes for this scenario
+
+### **Phase 2: Interactive Experimentation**
+
+**STEP 3:** Use the interactive demo section to experiment with the Vernam cipher:
+
+- Observe the pre-loaded plaintext and key values from the scenario
+- Understand how these values relate to the scenario's learning objectives
+- Click "🔐 Encrypt" to see the XOR operation in action
+- Compare your result with the expected ciphertext displayed
+
+**STEP 4:** Experiment with modifications (optional):
+
+- Try changing the plaintext or key values to see different outcomes
+- Observe how the Vernam cipher responds to different inputs
+- Notice patterns or behaviors that relate to the scenario's security assessment
+
+### **Phase 3: Knowledge Testing**
+
+**STEP 5:** Make your predictions in the "Test Your Understanding" section:
+
+- **Predict Ciphertext:** Enter what you think the encryption result will be
+- **Security Assessment:** Determine if the scheme is "Secure" or "Insecure" based on the scenario
+
+**STEP 6:** Click "✅ Check My Answer" to receive comprehensive feedback:
+
+- Verification of your ciphertext prediction against the correct XOR result
+- Evaluation of your security assessment based on cryptographic principles
+- Detailed explanations about the scenario's security implications
+
+### **Phase 4: Learning and Analysis**
+
+**STEP 7:** Study the detailed feedback to understand:
+
+- **Perfect Secrecy Conditions:** When the Vernam cipher achieves theoretical perfect security
+- **Common Vulnerabilities:** Key reuse, pattern predictability, insufficient key length, and information leakage
+- **Mathematical Principles:** XOR operations, randomness requirements, and key distribution challenges
+- **Real-world Implications:** Why these concepts matter in practical cryptography
+
+**STEP 8:** Progress through all scenarios systematically to build comprehensive understanding:
+
+- Start with Scenario 1 (proper usage) to understand the ideal case
+- Work through attack scenarios (2-6) to identify vulnerabilities
+- Compare and contrast different types of cryptographic weaknesses
+- Develop intuition for evaluating encryption scheme security
